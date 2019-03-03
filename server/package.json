@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "AN APPLICATION USE TO CONTROL THE DESKTOP FEATURES(EX. MOUSE, KEYBOARD AND OTHER PERIPHERALS)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RaviJoshii/desktopController.git"
+  },
+  "author": "ravi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RaviJoshii/desktopController/issues"
+  },
+  "homepage": "https://github.com/RaviJoshii/desktopController#readme"
+}
