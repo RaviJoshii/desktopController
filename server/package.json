@@ -15,6 +15,7 @@
   "bugs": {
     "url": "https://github.com/RaviJoshii/desktopController/issues"
   },
+<<<<<<< HEAD
   "homepage": "https://github.com/RaviJoshii/desktopController#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -24,4 +25,7 @@
     "nodemon": "^1.18.10",
     "robotjs": "^0.5.1"
   }
+=======
+  "homepage": "https://github.com/RaviJoshii/desktopController#readme"
+>>>>>>> 55f7b7a191944746326b62dc605248af9b404c6b
 }
