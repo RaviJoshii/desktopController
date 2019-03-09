@@ -2,22 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="20dp"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
-    android:layout_marginBottom="100dp"
     >
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
         android:layout_marginBottom="100dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MOUSE"
-            android:textAlignment="center"/>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,12 +40,15 @@
                 android:id="@+id/ml"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ML"/>
-            <Button
+                android:text="ML" />
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/mc"
-                android:text="MC"/>
+                android:text="MOUSE"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:textAlignment="center"/>
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -81,6 +77,23 @@
                 android:text="LR"/>
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/leftclick"
+                android:text="LEFT_CLICK"
+                android:layout_marginRight="55dp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rightclick"
+                android:text="RIGHT_CLICK"/>
+        </LinearLayout>
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -89,11 +102,34 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="KEYBOARD"
+            android:text="KEYBOARD:"
+            android:layout_marginBottom="30dp"
             />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TYPE"
+        android:layout_gravity="center"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/upkey"
+            android:text="UP KEY"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/downkey"
+            android:text="DOWN KEY"/>
     </LinearLayout>
 
 
