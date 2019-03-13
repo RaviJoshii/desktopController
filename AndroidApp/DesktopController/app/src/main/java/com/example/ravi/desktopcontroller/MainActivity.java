@@ -6,8 +6,6 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity
@@ -40,7 +38,7 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment=null;
         switch (menuItem.getItemId()){
             case R.id.commonfiles:
-                fragment=new commonfiles();
+                fragment=new addlink();
                 break;
             case R.id.dashboard:
                 fragment=new dashboard();

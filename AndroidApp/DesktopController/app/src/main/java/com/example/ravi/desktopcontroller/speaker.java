@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +42,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class speaker extends Fragment  {
     private TextView txtSpeechInput;
-    private Button btnspeak;
+    private ImageButton btnspeak;
     private final int REQ_CODE_SPEECH_INPUT=100;
     public String speechdata="";
     public String link="192.168.43.212:9000";

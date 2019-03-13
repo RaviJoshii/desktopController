@@ -3,134 +3,199 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/colorAccent"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MOUSE"
+        android:textSize="15dp"
+        android:background="#06faf2"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/colorAccent"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginBottom="40dp">
+        android:layout_gravity="center">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <Button
+            <ImageButton
+                android:background="@drawable/ul"
+                android:layout_width="65dp"
+                android:layout_height="45dp"
+                android:layout_margin="5dp"
                 android:id="@+id/ul"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="UL"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/uc"
-                android:text="UC"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/ur"
-                android:text="UR"/>
+
+                />
+            <ImageButton
+                android:background="@drawable/uc"
+                android:layout_width="65dp"
+                android:layout_height="45dp"
+                android:layout_margin="5dp"
+                android:id="@+id/uc"/>
+            <ImageButton
+                android:background="@drawable/ur"
+                android:layout_width="65dp"
+                android:layout_height="45dp"
+                android:layout_margin="5dp"
+                android:id="@+id/ur" />
 
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <Button
-                android:id="@+id/ml"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ML" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="MOUSE"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:textAlignment="center"/>
+            <ImageButton
+                android:background="@drawable/ml"
+                android:layout_width="65dp"
+                android:layout_height="45dp"
+                android:layout_margin="5dp"
+                android:id="@+id/ml" />
+            <ImageButton
+                android:background="@drawable/mouse"
+                android:layout_width="65dp"
+                android:layout_height="45dp"
+                android:layout_margin="5dp"/>
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/mr"
-                android:text="MR"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/ll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="LL"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/lc"
-                android:text="LC"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/lr"
-                android:text="LR"/>
+            <ImageButton
+                android:background="@drawable/mr"
+                android:layout_width="65dp"
+                android:layout_height="45dp"
+                android:layout_margin="5dp"
+                android:id="@+id/mr" />
 
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/leftclick"
-                android:text="LEFT_CLICK"
-                android:layout_marginRight="55dp"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+
+            <ImageButton
+            android:background="@drawable/ll"
+                android:layout_width="65dp"
+                android:layout_height="45dp"
+                android:layout_margin="5dp"
+                android:id="@+id/ll" />
+            <ImageButton
+                android:background="@drawable/lc"
+                android:layout_width="65dp"
+                android:layout_height="45dp"
+                android:layout_margin="5dp"
+                android:id="@+id/lc"/>
+            <ImageButton
+                android:background="@drawable/lr"
+                android:layout_width="65dp"
+                android:layout_height="45dp"
+                android:layout_margin="5dp"
+                android:id="@+id/lr"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageButton
+                android:background="@drawable/leftclick"
+                android:layout_width="90dp"
+                android:layout_height="70dp"
+                android:layout_margin="10dp"
+                android:id="@+id/leftclick"/>
+            <ImageButton
+                android:background="@drawable/rightclick"
+                android:layout_width="90dp"
+                android:layout_height="70dp"
+               android:layout_marginLeft="14dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
                 android:id="@+id/rightclick"
                 android:text="RIGHT_CLICK"/>
         </LinearLayout>
 
     </LinearLayout>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/colorAccent"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="KEYBOARD"
+        android:textSize="15dp"
+        android:background="#06faf2"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/colorAccent"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="KEYBOARD:"
-            android:layout_marginBottom="30dp"
-            />
+        android:orientation="horizontal">
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="245dp"
             android:layout_height="wrap_content"
             android:id="@+id/typestring"/>
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:text="TYPE"
-        android:id="@+id/type"
-        android:layout_gravity="center"/>
+        android:text="TYPE.."
+        android:textSize="15dp"
+        android:id="@+id/type" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_gravity="center">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageButton
+            android:background="@drawable/upkey"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
             android:id="@+id/upkey"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
             android:text="UP KEY"/>
-        <Button
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/downkey"
-            android:text="DOWN KEY"/>
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+        <ImageButton
+            android:background="@drawable/leftkey"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:id="@+id/leftkey"
+            android:layout_margin="5dp"/>
+            <ImageButton
+                android:background="@drawable/downkey"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:id="@+id/downkey"
+                android:layout_margin="5dp"/>
+            <ImageButton
+                android:background="@drawable/rightkey"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:id="@+id/rightkey"/>
+        </LinearLayout>
     </LinearLayout>
 
 

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -31,7 +32,8 @@ import javax.net.ssl.HttpsURLConnection;
 
 
 public class dashboard extends Fragment {
-    public Button ul, uc, ur, ml, mr, ll, lc, lr, types, upkey, downkey, leftCLick, rightclick;
+    public ImageButton ul, uc, ur, ml, mr, ll, lc, lr, upkey, downkey,rightkey,leftkey, leftCLick, rightclick;
+    public Button types;
     public EditText typestring;
     public String code = "";
     public String data = "";
@@ -57,6 +59,8 @@ public class dashboard extends Fragment {
         typestring = myfragmentview.findViewById(R.id.typestring);
         leftCLick = myfragmentview.findViewById(R.id.leftclick);
         rightclick = myfragmentview.findViewById(R.id.rightclick);
+        leftkey = myfragmentview.findViewById(R.id.leftkey);
+        rightkey = myfragmentview.findViewById(R.id.rightkey);
 
 
         ul.setOnTouchListener(new View.OnTouchListener() {
@@ -322,6 +326,56 @@ public class dashboard extends Fragment {
                 public void run() {
                     code = "keyboard";
                     data = "downkey";
+                    new SendPostRequest().execute();
+                    mhandler.postDelayed(this, 100);
+                }
+            };
+        });
+        rightkey.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        mhandler.postDelayed(mAction, 10);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        myfragmentview.performClick();
+                        mhandler.removeCallbacks(mAction);
+                        break;
+                }
+                return true;
+            }
+
+            Runnable mAction = new Runnable() {
+                @Override
+                public void run() {
+                    code = "keyboard";
+                    data = "rightkey";
+                    new SendPostRequest().execute();
+                    mhandler.postDelayed(this, 100);
+                }
+            };
+        });
+        leftkey.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        mhandler.postDelayed(mAction, 10);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        myfragmentview.performClick();
+                        mhandler.removeCallbacks(mAction);
+                        break;
+                }
+                return true;
+            }
+
+            Runnable mAction = new Runnable() {
+                @Override
+                public void run() {
+                    code = "keyboard";
+                    data = "leftkey";
                     new SendPostRequest().execute();
                     mhandler.postDelayed(this, 100);
                 }
