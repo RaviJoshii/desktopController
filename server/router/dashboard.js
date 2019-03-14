@@ -8,10 +8,11 @@ module.exports=function(app) {
 	app.use(bodyParser.urlencoded( {extended: true}));
 
 	var status="1";
-	app.post('/checking',function(req,res){
+	app.post('/checkconnection',function(req,res){
 		console.log("fesf");
 			appdata={
-		 "error":status
+		 "error":status,
+		 "data":"yahoo"
 		}
 		res.json(appdata);
 	});

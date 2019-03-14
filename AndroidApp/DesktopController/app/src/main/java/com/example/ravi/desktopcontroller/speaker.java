@@ -50,10 +50,9 @@ public class speaker extends Fragment  {
     private final int REQ_CODE_SPEECH_INPUT=100;
     public String speechdata="";
     private String connecteddevice;
-    private TextView connDevice;
     public String link;
     private Boolean flag=false;
-    private Button controlfunctions, keyboardkeys,otherfunction,close;
+    private Button controlfunctions, keyboardkeys,otherfunction,closes;
    LinearLayout linearLayout2;
 
 
@@ -64,23 +63,11 @@ public class speaker extends Fragment  {
        flag=false;
         View myfragmentview=inflater.inflate(R.layout.speaker,null);
         final View rules=inflater.inflate(R.layout.rules,null);
+        linearLayout2=myfragmentview.findViewById(R.id.linearlayout2);
 
        /////////getting the link of connected device
 
-       View linkView=inflater.inflate(R.layout.addlink,null);
-       connDevice=linkView.findViewById(R.id.connectedLinkText);
-        linearLayout2=myfragmentview.findViewById(R.id.linearlayout2);
-        close=rules.findViewById(R.id.close);
 
-       connecteddevice= connDevice.getText().toString();
-        if(connecteddevice.length()>0) {
-            String links[] = connecteddevice.split("-");
-            link=links[1].toString();
-            flag=true;
-        }
-        else {
-            Toast.makeText(getContext(),"established the connection",Toast.LENGTH_SHORT).show();
-        }
         /////////////////////////////////
 
         txtSpeechInput=myfragmentview.findViewById(R.id.speaktext);
@@ -88,6 +75,7 @@ public class speaker extends Fragment  {
         controlfunctions=myfragmentview.findViewById(R.id.controlfunctions);
         otherfunction=myfragmentview.findViewById(R.id.otherfunctions);
         keyboardkeys=myfragmentview.findViewById(R.id.tappingkeys);
+        closes=rules.findViewById(R.id.close);
 
 
        btnspeak.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +102,7 @@ public class speaker extends Fragment  {
                 popupWindow.showAtLocation(linearLayout2, Gravity.CENTER,0,0);
                 popupWindow.setFocusable(true);
                 popupWindow.update();
-                close.setOnClickListener(new View.OnClickListener() {
+                closes.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(View view) {
@@ -133,7 +121,7 @@ public class speaker extends Fragment  {
                 popupWindow.showAtLocation(linearLayout2, Gravity.CENTER,0,0);
                 popupWindow.setFocusable(true);
                 popupWindow.update();
-                close.setOnClickListener(new View.OnClickListener() {
+                closes.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(View view) {
@@ -152,7 +140,7 @@ public class speaker extends Fragment  {
                 popupWindow.showAtLocation(linearLayout2, Gravity.CENTER,0,0);
                 popupWindow.setFocusable(true);
                 popupWindow.update();
-                close.setOnClickListener(new View.OnClickListener() {
+                closes.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(View view) {

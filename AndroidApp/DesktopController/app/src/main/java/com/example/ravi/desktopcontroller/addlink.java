@@ -1,5 +1,7 @@
 package com.example.ravi.desktopcontroller;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -43,12 +45,17 @@ public class addlink extends Fragment {
     private EditText typeLink,clientname;
     private TextView connectionlink;
     LinearLayout l1;
-    private String link,ClientName,Name;
+    private String link,ClientName,Name,datas;
     private Boolean connectionStatus=false;
+    private int Count;
 
     private ArrayAdapter<String> arrayAdapter;
     private ArrayList<String> arrayList;
+    SharedPreferences sharedPreferences;
     private  int flag=0;
+    private  String links[];
+    private String allrecentlink;
+    boolean flag2=true;
 
     @Nullable
     @Override
@@ -67,6 +74,24 @@ public class addlink extends Fragment {
         l1=myview.findViewById(R.id.ll);
 
 
+        //////////////////////////////////
+
+        allrecentlink=getActivity().getSharedPreferences("mypref",Context.MODE_PRIVATE)
+                .getString("recentlinks","");
+        if(allrecentlink.length()>=1) {
+            links = allrecentlink.split(";");
+            for (int i = 0; i < links.length; i++) {
+                datas = links[i].toString();
+                arrayAdapter.add(datas);
+                recentlink.setAdapter(arrayAdapter);
+            }
+        }
+
+
+        //////////////////////////////////
+
+
+
         addlink=myview.findViewById(R.id.addLink);
         addlink.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,35 +106,46 @@ public class addlink extends Fragment {
                     public void onClick(View view) {
                         link=typeLink.getText().toString();
                         ClientName=clientname.getText().toString();
-                        Name=ClientName+" :-"+link;
+                        Name=ClientName+" -"+link;
                         if((ClientName.length()<=0)||(link.length()<=0)){
                             Toast.makeText(getContext(),"Name or link is not specified",Toast.LENGTH_SHORT).show();
                             flag=0;
                         }
-                        else
-                        {
-                            flag=1;
+                        else {
+                            flag = 1;
                             new SendPostRequest().execute();
-                        }
 
-
-                        if(flag==1) {
-                                connectionStatus=true;
                             if(connectionStatus) {
-                                Toast.makeText(getContext(), Name + " is connected", Toast.LENGTH_SHORT).show();
-                                arrayAdapter.add(Name);
-                                recentlink.setAdapter(arrayAdapter);
+                                popupWindow.dismiss();
+                                allrecentlink=allrecentlink+Name+";";
+                                connectionlink.setText(Name);
                                 typeLink.setText("");
                                 clientname.setText("");
-                                connectionlink.setText(Name);
-                                popupWindow.dismiss();
 
+                                getActivity().getSharedPreferences("mypref",Context.MODE_PRIVATE).edit()
+                                        .putString("recentlinks", allrecentlink)
+                                        .putString("current",Name).commit();
+                                arrayAdapter.add(Name);
+                                recentlink.setAdapter(arrayAdapter);
+
+                                Toast.makeText(getContext(), Name + " is connected", Toast.LENGTH_SHORT).show();
+                                connectionStatus=false;
                             }
                             else{
+
                                 Toast.makeText(getContext(), Name + " connection failed", Toast.LENGTH_SHORT).show();
+                                connectionStatus=false;
                             }
 
+
+
                         }
+
+
+
+
+
+
                     }
                 });
 
@@ -123,19 +159,42 @@ public class addlink extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String s= recentlink.getItemAtPosition(i).toString();
-                connectionlink.setText(s);
+
+
+
+
                 String links[]=s.split("-");
                 link=links[1].toString();
 
-                new SendPostRequest().execute();
-                connectionStatus=true;
-                if(connectionStatus){
-                    Toast.makeText(getContext(), Name + " is connected", Toast.LENGTH_SHORT).show();
 
+                new SendPostRequest().execute();
+
+                if(connectionStatus) {
+                    getActivity().getSharedPreferences("mypref",Context.MODE_PRIVATE).edit()
+                            .putString("current",s).commit();
+                    datas=getActivity().getSharedPreferences("mypref",Context.MODE_PRIVATE)
+                            .getString("current","");
+                    connectionlink.setText(datas);
+                    Toast.makeText(getContext(), datas + " is connected", Toast.LENGTH_SHORT).show();
+                    connectionStatus=false;
                 }
                 else{
-                    Toast.makeText(getContext(), Name + " connection failed", Toast.LENGTH_SHORT).show();
+
+                    Toast.makeText(getContext(), datas + " connection failed", Toast.LENGTH_SHORT).show();
+                    connectionStatus=false;
                 }
+
+
+
+
+
+
+
+
+
+
+
+
             }
         });
 
@@ -160,7 +219,7 @@ public class addlink extends Fragment {
             try {
                 JSONObject postDataParams = new JSONObject();
                 Log.e("params", postDataParams.toString());
-                URL url = new URL("http:"+link+"/checkconnection");
+                URL url = new URL("http://"+link+":9000/checkconnection");
                 //url="http://"+link+"/control";
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 Log.e("cp1","connectionin");
@@ -188,7 +247,6 @@ public class addlink extends Fragment {
                                     conn.getInputStream()));
                     StringBuffer sb = new StringBuffer("");
                     String line = "";
-
                     while ((line = in.readLine()) != null) {
 
                         sb.append(line);
@@ -219,8 +277,9 @@ public class addlink extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            if(y=="1"){
+            if(y.equals("1")){
                 connectionStatus=true;
+
             }
             else {
                 connectionStatus=false;

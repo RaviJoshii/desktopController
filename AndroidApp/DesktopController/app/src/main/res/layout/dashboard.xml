@@ -152,11 +152,12 @@
             android:layout_height="wrap_content"
             android:id="@+id/typestring"/>
     <Button
-        android:layout_width="140dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:text="TYPE.."
-        android:textSize="15dp"
-        android:id="@+id/type" />
+        android:textStyle="bold"
+        android:id="@+id/type"
+        android:background="#06faf2"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -201,6 +202,8 @@
                 android:layout_height="50dp"
                 android:layout_margin="5dp"
                 android:text="ENTER"
+                android:textStyle="bold"
+                android:background="#06faf2"
                 android:id="@+id/enter"/>
 
         </LinearLayout>

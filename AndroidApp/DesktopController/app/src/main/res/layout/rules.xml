@@ -6,7 +6,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="#eef99f">
+    android:background="@drawable/wrinkle">
     <ScrollView
         android:layout_width="320dp"
         android:layout_height="360dp">
@@ -34,7 +34,7 @@
         android:layout_gravity="center"
         android:text="CLOSE"
         android:id="@+id/close"
-        android:background="#fffb00"
+        android:backgroundTint="#f41d36"
         android:layout_margin="10dp"/>
 
 

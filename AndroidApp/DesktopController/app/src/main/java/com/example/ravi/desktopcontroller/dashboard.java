@@ -41,7 +41,6 @@ public class dashboard extends Fragment {
     public Handler mhandler = new Handler();
     public String link ;
     private String connecteddevice;
-    private TextView connDevice;
 
     @Nullable
     @Override
@@ -70,17 +69,7 @@ public class dashboard extends Fragment {
 
         /////////getting the link of connected device
 
-        View linkView=inflater.inflate(R.layout.addlink,null);
 
-        connDevice=linkView.findViewById(R.id.connectedLinkText);
-        connecteddevice= connDevice.getText().toString();
-        if(connecteddevice.length()>0) {
-            String links[] = connecteddevice.split("-");
-            link=links[1].toString();
-        }
-        else {
-            Toast.makeText(getContext(),"established the connection",Toast.LENGTH_SHORT).show();
-        }
 
 
         /////////////////////////////////
