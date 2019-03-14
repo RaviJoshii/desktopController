@@ -6,19 +6,17 @@ module.exports=function(app) {
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded( {extended: true}));
 
-
+	var status="1";
 
 	app.post('/speak',function(req,res){
 
 
 
-		var code=req.body.code;
-		code=code.toString();
+		
 		var data=req.body.data;
 		data=data.toString();
-		var appdata1={
-			"error":code,
-			"data":data
+		var appdata={
+			"error":status
 		}
 
 		var str= data.split(" ");
@@ -29,7 +27,7 @@ module.exports=function(app) {
 		{		
 				if(secondword=="enter"){
 
-					robot.keyTap("audio_mute");
+					robot.keyTap("enter");
 
 				}
 				else if(secondword=="page"){
@@ -82,7 +80,7 @@ module.exports=function(app) {
 					robot.keyTap("f12");
 
 				}
-				else if(secondword=="capslock"){
+				else if(secondword=="caps"){
 					robot.keyTap("command");
 				}
 				
@@ -112,12 +110,21 @@ module.exports=function(app) {
 
 				}
 				else if(secondword=="shift"){
-					robot.keyTap("shift");
+
+					robot.keyToggle('command','down');
+					robot.keyToggle('shift','down');
+					robot.keyToggle('g','down');
+					robot.keyToggle('shift','down');
+					robot.keyToggle('g','down');
+
 
 				}
 				else if(secondword=="mute"){
-					robot.keyTap("mute");
+					robot.keyTap("audio_mute");
 
+				}
+				else{
+					appdata.status="0";
 				}
 				
 
@@ -137,6 +144,9 @@ module.exports=function(app) {
 				console.log("increase brightness");
 
 			}
+			else{
+					appdata.status="0";
+				}
 
 		}
 
@@ -147,6 +157,9 @@ module.exports=function(app) {
 			else if(secondword=="brightness"){
 				console.log("decrease brightness");
 			}
+			else{
+					appdata.status="0";
+				}
 
 		}
 		else if(firstword=="do"){
@@ -156,8 +169,14 @@ module.exports=function(app) {
 			else if(secondword=="restart"){
 				
 			}
+			else{
+					appdata.status="0";
+				}
 
 		}
-		res.json(appdata1);
+		else{
+			appdata.status="0";
+		}
+		res.json(appdata);
 	});
 }

@@ -7,7 +7,14 @@ module.exports=function(app) {
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded( {extended: true}));
 
-	
+	var status="1";
+	app.post('/checking',function(req,res){
+		console.log("fesf");
+			appdata={
+		 "error":status
+		}
+		res.json(appdata);
+	});
 	app.post('/control',function(req,res){
 
 		var code=req.body.code;
@@ -15,8 +22,7 @@ module.exports=function(app) {
 		var data=req.body.data;
 		data=data.toString();
 		appdata={
-			"error":code,
-			"data":data
+		 "error":status
 		}
 		
 	
@@ -26,45 +32,44 @@ module.exports=function(app) {
 		var y= mouse.y;
 		if(code=="mouse")
 		{
-
-
+			
 		if(data=='ul'){//ul
-			robot.moveMouse(x-2,y-2);
+			robot.moveMouse(x-6,y-6);
 
 
 		}
 		else if(data=='uc'){//uc
-			robot.moveMouse(x,y-2);
+			robot.moveMouse(x,y-6);
 			//console.log("uc");
 
 		}
 		else if(data=='ur'){//ur
-			robot.moveMouse(x+2,y-2);
+			robot.moveMouse(x+6,y-6);
 			//console.log("ur");
 			
 		}
 		else if(data=='ml'){//ml
-			robot.moveMouse(x-2,y);
+			robot.moveMouse(x-6,y);
 			//console.log("ml");
 			
 		}
 		else if(data=='mr'){//mr
-			robot.moveMouse(x+2,y);
+			robot.moveMouse(x+6,y);
 			//console.log("mr");
 			
 		}
 		else if(data=='ll'){//ll
-			robot.moveMouse(x-2,y+2);
+			robot.moveMouse(x-6,y+6);
 			//console.log("ll");
 			
 		}
 		else if(data=='lc'){//lc
-			robot.moveMouse(x,y+2);
+			robot.moveMouse(x,y+6);
 			//console.log("lc");
 			
 		}
 		else if(data=='lr'){//lr
-			robot.moveMouse(x+2,y+2);
+			robot.moveMouse(x+6,y+6);
 			//console.log("lr");
 			
 		}
@@ -90,7 +95,9 @@ module.exports=function(app) {
 			robot.mouseClick("right",true);
 		}
 		else {
-			console.log("nothing")
+			console.log("nothing");
+			appdata.status="0";
+
 		}
 	}
 	else if(code=="keyboard"){
@@ -109,11 +116,20 @@ module.exports=function(app) {
 		else if (data="rightkey"){
 			robot.keyTap("right");
 		}
+		else if (data="enter"){
+			robot.keyTap("enter");
+		}
+		else{
+		appdata.status="2"
+		}
 
 	}
 	else if(code == "type"){
 		robot.typeString(data);
 
+	}
+	else{
+		appdata.status="2"
 	}
 	
 res.json(appdata);

@@ -163,14 +163,15 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center">
+
         <ImageButton
-            android:background="@drawable/upkey"
+            android:id="@+id/upkey"
             android:layout_width="70dp"
             android:layout_height="50dp"
-            android:id="@+id/upkey"
             android:layout_gravity="center"
             android:layout_margin="5dp"
-            android:text="UP KEY"/>
+            android:background="@drawable/upkey"
+            android:text="UP KEY" />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -195,6 +196,13 @@
                 android:layout_height="50dp"
                 android:layout_margin="5dp"
                 android:id="@+id/rightkey"/>
+            <Button
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:text="ENTER"
+                android:id="@+id/enter"/>
+
         </LinearLayout>
     </LinearLayout>
 

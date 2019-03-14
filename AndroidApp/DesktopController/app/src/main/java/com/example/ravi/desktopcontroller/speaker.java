@@ -12,11 +12,15 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,21 +49,130 @@ public class speaker extends Fragment  {
     private ImageButton btnspeak;
     private final int REQ_CODE_SPEECH_INPUT=100;
     public String speechdata="";
-    public String link="192.168.43.212:9000";
+    private String connecteddevice;
+    private TextView connDevice;
+    public String link;
+    private Boolean flag=false;
+    private Button controlfunctions, keyboardkeys,otherfunction,close;
+   LinearLayout linearLayout2;
+
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       View myfragmentview=inflater.inflate(R.layout.speaker,null);
+       flag=false;
+        View myfragmentview=inflater.inflate(R.layout.speaker,null);
+        final View rules=inflater.inflate(R.layout.rules,null);
+
+       /////////getting the link of connected device
+
+       View linkView=inflater.inflate(R.layout.addlink,null);
+       connDevice=linkView.findViewById(R.id.connectedLinkText);
+        linearLayout2=myfragmentview.findViewById(R.id.linearlayout2);
+        close=rules.findViewById(R.id.close);
+
+       connecteddevice= connDevice.getText().toString();
+        if(connecteddevice.length()>0) {
+            String links[] = connecteddevice.split("-");
+            link=links[1].toString();
+            flag=true;
+        }
+        else {
+            Toast.makeText(getContext(),"established the connection",Toast.LENGTH_SHORT).show();
+        }
+        /////////////////////////////////
 
         txtSpeechInput=myfragmentview.findViewById(R.id.speaktext);
         btnspeak=myfragmentview.findViewById(R.id.speakbutton);
+        controlfunctions=myfragmentview.findViewById(R.id.controlfunctions);
+        otherfunction=myfragmentview.findViewById(R.id.otherfunctions);
+        keyboardkeys=myfragmentview.findViewById(R.id.tappingkeys);
+
+
        btnspeak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               promptSpeechInput();
+                flag=true;
+                if(flag) {
+                    promptSpeechInput();
+                }
+                else
+                {
+                    Toast.makeText(getContext(),"established the connection by adding CLIENT PC link", Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
+
+
+
+        keyboardkeys.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final PopupWindow popupWindow=new PopupWindow(rules, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                popupWindow.showAtLocation(linearLayout2, Gravity.CENTER,0,0);
+                popupWindow.setFocusable(true);
+                popupWindow.update();
+                close.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        popupWindow.dismiss();
+
+
+                    }
+
+                });
+            }
+        });
+        otherfunction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final PopupWindow popupWindow=new PopupWindow(rules, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                popupWindow.showAtLocation(linearLayout2, Gravity.CENTER,0,0);
+                popupWindow.setFocusable(true);
+                popupWindow.update();
+                close.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        popupWindow.dismiss();
+
+
+                    }
+
+                });
+            }
+        });
+        controlfunctions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final PopupWindow popupWindow=new PopupWindow(rules, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                popupWindow.showAtLocation(linearLayout2, Gravity.CENTER,0,0);
+                popupWindow.setFocusable(true);
+                popupWindow.update();
+                close.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        popupWindow.dismiss();
+
+
+                    }
+
+                });
+            }
+        });
+
+
+
+
+
+
+
+
+
 
 
         return myfragmentview;
@@ -84,14 +197,14 @@ public class speaker extends Fragment  {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode){
+
             case REQ_CODE_SPEECH_INPUT:{
                 if(resultCode==RESULT_OK &&null!=data){
+
                     ArrayList<String> result= data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     speechdata=result.get(0);
                     txtSpeechInput.setText(speechdata);
                     new SendPostRequest().execute();
-
-
                 }
                 break;
             }
@@ -108,10 +221,11 @@ public class speaker extends Fragment  {
 
             try {
 
-                URL url = new URL("http://"+link+"/control"); // here is your URL path
+                //URL url = new URL("http://"+link+":9000/speak"); // here is your URL path
+                URL url = new URL("http://192.168.43.212:9000/speak");
+
 
                 JSONObject postDataParams = new JSONObject();
-                postDataParams.put("code","speech");
                 postDataParams.put("data",speechdata);
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();

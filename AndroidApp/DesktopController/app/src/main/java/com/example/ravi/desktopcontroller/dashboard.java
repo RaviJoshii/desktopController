@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -33,12 +34,14 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class dashboard extends Fragment {
     public ImageButton ul, uc, ur, ml, mr, ll, lc, lr, upkey, downkey,rightkey,leftkey, leftCLick, rightclick;
-    public Button types;
+    public Button types,enter;
     public EditText typestring;
     public String code = "";
     public String data = "";
     public Handler mhandler = new Handler();
-    public String link = "192.168.43.212:9000";
+    public String link ;
+    private String connecteddevice;
+    private TextView connDevice;
 
     @Nullable
     @Override
@@ -53,6 +56,7 @@ public class dashboard extends Fragment {
         ll = myfragmentview.findViewById(R.id.ll);
         lc = myfragmentview.findViewById(R.id.lc);
         lr = myfragmentview.findViewById(R.id.lr);
+        enter = myfragmentview.findViewById(R.id.enter);
         upkey = myfragmentview.findViewById(R.id.upkey);
         downkey = myfragmentview.findViewById(R.id.downkey);
         types = myfragmentview.findViewById(R.id.type);
@@ -61,6 +65,25 @@ public class dashboard extends Fragment {
         rightclick = myfragmentview.findViewById(R.id.rightclick);
         leftkey = myfragmentview.findViewById(R.id.leftkey);
         rightkey = myfragmentview.findViewById(R.id.rightkey);
+
+
+
+        /////////getting the link of connected device
+
+        View linkView=inflater.inflate(R.layout.addlink,null);
+
+        connDevice=linkView.findViewById(R.id.connectedLinkText);
+        connecteddevice= connDevice.getText().toString();
+        if(connecteddevice.length()>0) {
+            String links[] = connecteddevice.split("-");
+            link=links[1].toString();
+        }
+        else {
+            Toast.makeText(getContext(),"established the connection",Toast.LENGTH_SHORT).show();
+        }
+
+
+        /////////////////////////////////
 
 
         ul.setOnTouchListener(new View.OnTouchListener() {
@@ -406,6 +429,14 @@ public class dashboard extends Fragment {
                 new SendPostRequest().execute();
             }
         });
+        enter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                code = "keyboard";
+                data = "enter";
+                new SendPostRequest().execute();
+            }
+        });
 
         return myfragmentview;
     }
@@ -424,9 +455,10 @@ public class dashboard extends Fragment {
                 postDataParams.put("code", code);
                 postDataParams.put("data", data);
                 Log.e("params", postDataParams.toString());
+                //URL url = new URL("http://"+link+":9000/control");
                 URL url = new URL("http://192.168.43.212:9000/control");
-                //url="http://"+link+"/control";
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    Log.e("url",url.toString());
                     Log.e("cp1","connectionin");
                 conn.setReadTimeout(15000 /* milliseconds */);
                 conn.setConnectTimeout(15000 /* milliseconds */);

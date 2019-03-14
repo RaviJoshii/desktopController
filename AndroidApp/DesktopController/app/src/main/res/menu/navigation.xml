@@ -4,12 +4,12 @@
     <item
         android:id="@+id/commonfiles"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="Terminal" />
+        android:title="Config" />
 
     <item
         android:id="@+id/dashboard"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="mouse/keyboard" />
+        android:title="mouse/keyb" />
 
     <item
         android:id="@+id/speaker"
