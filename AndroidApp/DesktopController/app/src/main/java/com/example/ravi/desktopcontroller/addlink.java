@@ -56,6 +56,8 @@ public class addlink extends Fragment {
     private  String links[];
     private String allrecentlink;
     boolean flag2=true;
+    public String s;
+    public PopupWindow popupWindow;
 
     @Nullable
     @Override
@@ -89,14 +91,11 @@ public class addlink extends Fragment {
 
 
         //////////////////////////////////
-
-
-
         addlink=myview.findViewById(R.id.addLink);
         addlink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               final PopupWindow popupWindow=new PopupWindow(popup, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+               popupWindow=new PopupWindow(popup, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 popupWindow.showAtLocation(l1, Gravity.CENTER,0,0);
                 popupWindow.setFocusable(true);
                 popupWindow.update();
@@ -109,34 +108,10 @@ public class addlink extends Fragment {
                         Name=ClientName+" -"+link;
                         if((ClientName.length()<=0)||(link.length()<=0)){
                             Toast.makeText(getContext(),"Name or link is not specified",Toast.LENGTH_SHORT).show();
-                            flag=0;
                         }
                         else {
                             flag = 1;
                             new SendPostRequest().execute();
-
-                            if(connectionStatus) {
-                                popupWindow.dismiss();
-                                allrecentlink=allrecentlink+Name+";";
-                                connectionlink.setText(Name);
-                                typeLink.setText("");
-                                clientname.setText("");
-
-                                getActivity().getSharedPreferences("mypref",Context.MODE_PRIVATE).edit()
-                                        .putString("recentlinks", allrecentlink)
-                                        .putString("current",Name).commit();
-                                arrayAdapter.add(Name);
-                                recentlink.setAdapter(arrayAdapter);
-
-                                Toast.makeText(getContext(), Name + " is connected", Toast.LENGTH_SHORT).show();
-                                connectionStatus=false;
-                            }
-                            else{
-
-                                Toast.makeText(getContext(), Name + " connection failed", Toast.LENGTH_SHORT).show();
-                                connectionStatus=false;
-                            }
-
 
 
                         }
@@ -158,41 +133,16 @@ public class addlink extends Fragment {
         recentlink.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String s= recentlink.getItemAtPosition(i).toString();
+                s= recentlink.getItemAtPosition(i).toString();
 
 
-
+                Log.e("clicked",s);
 
                 String links[]=s.split("-");
                 link=links[1].toString();
 
-
+                flag=2;
                 new SendPostRequest().execute();
-
-                if(connectionStatus) {
-                    getActivity().getSharedPreferences("mypref",Context.MODE_PRIVATE).edit()
-                            .putString("current",s).commit();
-                    datas=getActivity().getSharedPreferences("mypref",Context.MODE_PRIVATE)
-                            .getString("current","");
-                    connectionlink.setText(datas);
-                    Toast.makeText(getContext(), datas + " is connected", Toast.LENGTH_SHORT).show();
-                    connectionStatus=false;
-                }
-                else{
-
-                    Toast.makeText(getContext(), datas + " connection failed", Toast.LENGTH_SHORT).show();
-                    connectionStatus=false;
-                }
-
-
-
-
-
-
-
-
-
-
 
 
             }
@@ -277,13 +227,63 @@ public class addlink extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            if(y.equals("1")){
+            if(y.equals("1")) {
                 connectionStatus=true;
-
             }
             else {
                 connectionStatus=false;
             }
+            if(flag==1){
+
+                    if(connectionStatus) {
+
+                        allrecentlink=allrecentlink+Name+";";
+                        connectionlink.setText(Name);
+                        typeLink.setText("");
+                        clientname.setText("");
+
+                        getActivity().getSharedPreferences("mypref",Context.MODE_PRIVATE).edit()
+                                .putString("recentlinks", allrecentlink)
+                                .putString("current",Name).commit();
+                        arrayAdapter.add(Name);
+                        recentlink.setAdapter(arrayAdapter);
+                        popupWindow.dismiss();
+
+                        Toast.makeText(getContext(), Name + " is connected", Toast.LENGTH_SHORT).show();
+                        connectionStatus=false;
+                    }
+                    else{
+
+                        Toast.makeText(getContext(), Name + " connection failed", Toast.LENGTH_SHORT).show();
+                        connectionStatus=false;
+                    }
+                flag=0;
+
+
+                }
+                else if(flag==2){
+                    if(connectionStatus) {
+                        getActivity().getSharedPreferences("mypref",Context.MODE_PRIVATE).edit()
+                                .putString("current",s).commit();
+                        datas=getActivity().getSharedPreferences("mypref",Context.MODE_PRIVATE)
+                                .getString("current","");
+                        Log.e("datas",datas);
+                        connectionlink.setText(datas);
+                        Toast.makeText(getContext(), datas + " is connected", Toast.LENGTH_SHORT).show();
+                        connectionStatus=false;
+                    }
+                    else{
+
+                        Toast.makeText(getContext(), datas + " connection failed", Toast.LENGTH_SHORT).show();
+                        connectionStatus=false;
+                    }
+                flag=0;
+
+                }
+
+
+
+
 
 
 

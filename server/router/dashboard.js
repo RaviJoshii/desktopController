@@ -11,8 +11,7 @@ module.exports=function(app) {
 	app.post('/checkconnection',function(req,res){
 		console.log("fesf");
 			appdata={
-		 "error":status,
-		 "data":"yahoo"
+		 "error":status
 		}
 		res.json(appdata);
 	});
@@ -26,7 +25,6 @@ module.exports=function(app) {
 		 "error":status
 		}
 		
-	
 
 		var mouse = robot.getMousePos();
 		var x=mouse.x;
@@ -97,7 +95,6 @@ module.exports=function(app) {
 		}
 		else {
 			console.log("nothing");
-			appdata.status="0";
 
 		}
 	}
@@ -107,21 +104,39 @@ module.exports=function(app) {
 			robot.keyTap("up");
 			
 		}
-		else if (data="downkey"){
+		else if (data=="downkey"){
 			robot.keyTap("down");
 		}
 		else if(data=='leftkey'){
 			robot.keyTap("left");
 			
 		}
-		else if (data="rightkey"){
+		else if (data=="rightkey"){
 			robot.keyTap("right");
 		}
-		else if (data="enter"){
+		/*
+		else if (data=="enter"){
 			robot.keyTap("enter");
 		}
+		*/
+		
+		else if (data=="backspace"){
+			robot.keyTap("backspace");
+		}
+
+		else if(data=="enter")
+
+
+		{
+
+					robot.keyToggle('command','down');
+					robot.keyToggle('shift','down');
+					robot.keyToggle('g','down');gggggg
+					robot.keyToggle('shift','down');
+					robot.keyToggle('g','down');
+				}
 		else{
-		appdata.status="2"
+			console.log("invalid");
 		}
 
 	}
@@ -129,19 +144,10 @@ module.exports=function(app) {
 		robot.typeString(data);
 
 	}
-	else{
-		appdata.status="2"
-	}
-	
-res.json(appdata);
+	res.json(appdata);
 
 
 	});
-
-
-
-
-	
 	
 	
 

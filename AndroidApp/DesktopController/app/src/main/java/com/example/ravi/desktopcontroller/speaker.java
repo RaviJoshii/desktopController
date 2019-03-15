@@ -3,6 +3,7 @@ package com.example.ravi.desktopcontroller;
 import android.app.Activity;
 import android.arch.core.executor.TaskExecutor;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -45,7 +46,7 @@ import static android.app.Activity.RESULT_OK;
 
 
 public class speaker extends Fragment  {
-    private TextView txtSpeechInput;
+    private TextView txtSpeechInput,rulestitle,rulestext;
     private ImageButton btnspeak;
     private final int REQ_CODE_SPEECH_INPUT=100;
     public String speechdata="";
@@ -54,6 +55,7 @@ public class speaker extends Fragment  {
     private Boolean flag=false;
     private Button controlfunctions, keyboardkeys,otherfunction,closes;
    LinearLayout linearLayout2;
+   public String datas;
 
 
 
@@ -66,13 +68,18 @@ public class speaker extends Fragment  {
         linearLayout2=myfragmentview.findViewById(R.id.linearlayout2);
 
        /////////getting the link of connected device
-
+        datas=getActivity().getSharedPreferences("mypref", Context.MODE_PRIVATE)
+                .getString("current","");
+        link=datas.split("-")[1];
+        Log.e("curentlink",link);
 
         /////////////////////////////////
-
         txtSpeechInput=myfragmentview.findViewById(R.id.speaktext);
         btnspeak=myfragmentview.findViewById(R.id.speakbutton);
         controlfunctions=myfragmentview.findViewById(R.id.controlfunctions);
+        rulestitle=rules.findViewById(R.id.rulestitle);
+        rulestext=rules.findViewById(R.id.rulestext);
+
         otherfunction=myfragmentview.findViewById(R.id.otherfunctions);
         keyboardkeys=myfragmentview.findViewById(R.id.tappingkeys);
         closes=rules.findViewById(R.id.close);
@@ -98,12 +105,13 @@ public class speaker extends Fragment  {
         keyboardkeys.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                rulestitle.setText("KEYBOARD TAPPING RULES");
+                rulestext.setText(R.string.keyboardtappingkeys);
                 final PopupWindow popupWindow=new PopupWindow(rules, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 popupWindow.showAtLocation(linearLayout2, Gravity.CENTER,0,0);
                 popupWindow.setFocusable(true);
                 popupWindow.update();
                 closes.setOnClickListener(new View.OnClickListener() {
-
                     @Override
                     public void onClick(View view) {
                         popupWindow.dismiss();
@@ -117,6 +125,8 @@ public class speaker extends Fragment  {
         otherfunction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                rulestitle.setText("OTHER/COMMON FUNCTIONS ");
+                rulestext.setText(R.string.otherfunctions);
                 final PopupWindow popupWindow=new PopupWindow(rules, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 popupWindow.showAtLocation(linearLayout2, Gravity.CENTER,0,0);
                 popupWindow.setFocusable(true);
@@ -136,6 +146,8 @@ public class speaker extends Fragment  {
         controlfunctions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                rulestitle.setText("CONTROL FUNCTIONS RULES");
+                rulestext.setText(R.string.controlfunctions);
                 final PopupWindow popupWindow=new PopupWindow(rules, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 popupWindow.showAtLocation(linearLayout2, Gravity.CENTER,0,0);
                 popupWindow.setFocusable(true);
@@ -210,7 +222,7 @@ public class speaker extends Fragment  {
             try {
 
                 //URL url = new URL("http://"+link+":9000/speak"); // here is your URL path
-                URL url = new URL("http://192.168.43.212:9000/speak");
+                URL url = new URL("http://"+link+":9000/speak");
 
 
                 JSONObject postDataParams = new JSONObject();
@@ -277,6 +289,13 @@ public class speaker extends Fragment  {
             if(y=="0"){
                 Toast.makeText(getActivity(), "Invalid Text Input", Toast.LENGTH_SHORT).show();
             }
+            else if(y=="1"){
+                Log.e("success","success");
+            }
+            else{
+                Toast.makeText(getContext(),"Connection Failed, Configure the connection",Toast.LENGTH_SHORT).show();
+            }
+
 
         }
     }

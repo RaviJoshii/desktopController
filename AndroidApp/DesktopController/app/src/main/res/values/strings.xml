@@ -6,64 +6,44 @@
     <string name="aboutLink">For windows type: \'ipconfig\' in command-prompt\n
         For Linux type: \'ifconfig\' in terminal
     </string>
-    <string name="rules"><b>KEYBOARD</b>
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
-        * to execute the string say "press f1" work as press+f1 \n
+    <string name="keyboardtappingkeys">
+        1. SAY:- "PRESS f1" , for pressing f1 \n
+        \t\t\t\t similarly:- "PRESS  f1,f2,f3 and so on}\n\n
+        2. SAY:- "Type ANYTEXT" , for typing "any text"\n\n
+        3. SAY:- "PRESS ENTER", for pressing enter\n
+        \t\t\t\t similarly:- "press enter,backspace and so on"\n
+        4. SAY:- "PRESS mute" , for mute the volume\n
+        5. SAY:- "PRESS Page up" , for page up \n
+        6. SAY:- "PRESS page down" , for page down\n
+
+
+
+    </string>
+    <string name="controlfunctions">
+        1. SAY:- "PRESS Shift a" , for pressing shift+a \n
+        2. SAY:- "PRESS control a" , for pressing control+a \n
+        3. SAY:- "PRESS alt a" , for pressing alt+a \n
+        4. SAY:- "PRESS Shift control a" , for pressing shift+control+a\n
+        5. SAY:- "PRESS alt shift f1" , for pressing alt+shift+f1\n
+        6. SAY:- "PRESS escape" , for pressing escape\n
+
+        and so on
+
+
+    </string>
+    <string name="otherfunctions">
+        1. SAY:- "Increase volume" , increse the volume \n
+        2. SAY:- "Decrease volume" , decrease the volume \n
+        3. SAY:- "Increase brightness" , increse the brightness \n
+        4. SAY:- "decrease brightness" , decrease the volume \n
+        5. SAY:- "press home" , to tap the key home \n
+        6. SAY:- "press end" , to tap the key end \n
+        7. SAY:- "dp shutdown" , to shutdown the pc \n
+        8. SAY:- "dp restart" , to restart the pc \n
+
+
+        and so on
+
+
     </string>
 </resources>

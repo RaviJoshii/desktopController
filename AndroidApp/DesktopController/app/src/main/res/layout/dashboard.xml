@@ -155,24 +155,42 @@
         android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:text="TYPE.."
+        android:layout_marginTop="2dp"
         android:textStyle="bold"
         android:id="@+id/type"
-        android:background="#06faf2"/>
+        android:backgroundTint="#06faf2"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <ImageButton
+        android:id="@+id/upkey"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="90dp"
+        android:background="@drawable/upkey"
+        android:text="UP KEY" />
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:text="backspace"
+        android:layout_gravity=""
+        android:textStyle="bold"
+        android:backgroundTint="#06faf2"
+        android:id="@+id/backspace"/>
 
-        <ImageButton
-            android:id="@+id/upkey"
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:background="@drawable/upkey"
-            android:text="UP KEY" />
+</LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -203,7 +221,7 @@
                 android:layout_margin="5dp"
                 android:text="ENTER"
                 android:textStyle="bold"
-                android:background="#06faf2"
+                android:backgroundTint="#06faf2"
                 android:id="@+id/enter"/>
 
         </LinearLayout>

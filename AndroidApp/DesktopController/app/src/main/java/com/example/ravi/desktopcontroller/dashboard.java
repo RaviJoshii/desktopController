@@ -1,4 +1,5 @@
 package com.example.ravi.desktopcontroller;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,13 +35,14 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class dashboard extends Fragment {
     public ImageButton ul, uc, ur, ml, mr, ll, lc, lr, upkey, downkey,rightkey,leftkey, leftCLick, rightclick;
-    public Button types,enter;
+    public Button types,enter,backspace;
     public EditText typestring;
     public String code = "";
     public String data = "";
     public Handler mhandler = new Handler();
     public String link ;
     private String connecteddevice;
+    public  String datas;
 
     @Nullable
     @Override
@@ -64,13 +66,18 @@ public class dashboard extends Fragment {
         rightclick = myfragmentview.findViewById(R.id.rightclick);
         leftkey = myfragmentview.findViewById(R.id.leftkey);
         rightkey = myfragmentview.findViewById(R.id.rightkey);
+        backspace=myfragmentview.findViewById(R.id.backspace);
 
 
 
-        /////////getting the link of connected device
 
 
 
+/////////getting the link of connected device
+        datas=getActivity().getSharedPreferences("mypref", Context.MODE_PRIVATE)
+                .getString("current","");
+        link=datas.split("-")[1];
+        Log.e("curentlink",link);
 
         /////////////////////////////////
 
@@ -393,6 +400,31 @@ public class dashboard extends Fragment {
                 }
             };
         });
+        backspace.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        mhandler.postDelayed(mAction, 10);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        myfragmentview.performClick();
+                        mhandler.removeCallbacks(mAction);
+                        break;
+                }
+                return true;
+            }
+
+            Runnable mAction = new Runnable() {
+                @Override
+                public void run() {
+                    code = "keyboard";
+                    data = "backspace";
+                    new SendPostRequest().execute();
+                    mhandler.postDelayed(this, 100);
+                }
+            };
+        });
 
         types.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -427,6 +459,7 @@ public class dashboard extends Fragment {
             }
         });
 
+
         return myfragmentview;
     }
 
@@ -445,7 +478,7 @@ public class dashboard extends Fragment {
                 postDataParams.put("data", data);
                 Log.e("params", postDataParams.toString());
                 //URL url = new URL("http://"+link+":9000/control");
-                URL url = new URL("http://192.168.43.212:9000/control");
+                URL url = new URL("http://"+link+":9000/control");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     Log.e("url",url.toString());
                     Log.e("cp1","connectionin");
@@ -496,6 +529,7 @@ public class dashboard extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             String y="";
+            Boolean b=true;
             try {
                 JSONObject json = new JSONObject(result);
                 y=json.getString("error");
@@ -504,12 +538,22 @@ public class dashboard extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            if(y=="0"){
-                Toast.makeText(getActivity(),"Mouse Out of WIndow ",Toast.LENGTH_SHORT).show();
-
-            } else if (y == "2") {
-
+            if(y.equals("0")){
+                Toast.makeText(getActivity(),"Mouse Out of Window ",Toast.LENGTH_SHORT).show();
+                    b=false;
+            }
+            else if(y.equals("2")) {
+                    b=false;
                 Toast.makeText(getActivity(),"Keyboard Error ",Toast.LENGTH_SHORT).show();
+            }
+            else if(y.equals("1")){
+                b=false;
+                Log.e("success","success");
+            }
+
+            if(b){
+                Toast.makeText(getActivity(),"Connection Failed, Configure the connection",Toast.LENGTH_SHORT).show();
+
             }
 
 

@@ -9,14 +9,11 @@ module.exports=function(app) {
 	var status="1";
 
 	app.post('/speak',function(req,res){
-
-
-
-		
 		var data=req.body.data;
 		data=data.toString();
 		var appdata={
 			"error":status
+			
 		}
 
 		var str= data.split(" ");
@@ -65,6 +62,7 @@ module.exports=function(app) {
 
 				}
 				else if(secondword=="F9"){
+					
 					robot.keyTap("f9");
 
 				}
@@ -109,17 +107,17 @@ module.exports=function(app) {
 					robot.keyTap("alt");
 
 				}
+				/*
 				else if(secondword=="shift"){
 
 					robot.keyToggle('command','down');
 					robot.keyToggle('shift','down');
-					robot.keyToggle('g','down');
+					robot.keyToggle('g','down');gggggg
 					robot.keyToggle('shift','down');
 					robot.keyToggle('g','down');
-
-
-				}
+				}--------------------------*/
 				else if(secondword=="mute"){
+					console.log("mute")
 					robot.keyTap("audio_mute");
 
 				}
