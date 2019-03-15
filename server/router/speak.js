@@ -20,6 +20,7 @@ module.exports=function(app) {
 		var stringLength= str.length;
 		var firstword=str[0];
 		var secondword=str[1];
+		console.log(str);
 		if(firstword=="press")
 		{		
 				if(secondword=="enter"){
@@ -28,10 +29,10 @@ module.exports=function(app) {
 
 				}
 				else if(secondword=="page"){
-						if(str[3]=="up"){
+						if(str[2]=="up"){
 								robot.keyTap("pageup");
 						}
-						if(str[3]=="down"){
+						if(str[2]=="down"){
 								robot.keyTap("pagedown");
 						}
 				}
@@ -107,17 +108,53 @@ module.exports=function(app) {
 					robot.keyTap("alt");
 
 				}
-				/*
+				
 				else if(secondword=="shift"){
 
-					robot.keyToggle('command','down');
-					robot.keyToggle('shift','down');
-					robot.keyToggle('g','down');gggggg
-					robot.keyToggle('shift','down');
-					robot.keyToggle('g','down');
-				}--------------------------*/
+				var thirdword=str[2];
+				if(thirdword.length==1){
+					robot.keyTap(thirdword,'shift');
+				}
+				else if (thirdword=='command'||thirdword=='control'||thirdword=='alt'){
+					var fourthword=str[3];
+					robot.keyToggle(fourthword, 'down', [secondword, thirdword]);
+					robot.keyToggle(fourthword, 'up', [secondword, thirdword]);
+				}
+				else{
+					appdata.status="0";
+				}
+				}
+				else if(secondword=="control"){
+
+				var thirdword=str[2];
+				if(thirdword.length==1){
+					robot.keyTap(thirdword,'control');
+				}
+				else if (thirdword=='command'||thirdword=='control'||thirdword=='alt'){
+					var fourthword=str[3];
+					robot.keyToggle(fourthword, 'down', [secondword, thirdword]);
+					robot.keyToggle(fourthword, 'up', [secondword, thirdword]);
+				}
+				else{
+					appdata.status="0";
+				}
+				}
+				else if(secondword=="alt"){
+
+				var thirdword=str[2];
+				if(thirdword.length==1){
+					robot.keyTap(thirdword,'control');
+				}
+				else if (thirdword=='command'||thirdword=='control'||thirdword=='alt'){
+					var fourthword=str[3];
+					robot.keyToggle(fourthword, 'down', [secondword, thirdword]);
+					robot.keyToggle(fourthword, 'up', [secondword, thirdword]);
+				}
+				else{
+					appdata.status="0";
+				}
+				}
 				else if(secondword=="mute"){
-					console.log("mute")
 					robot.keyTap("audio_mute");
 
 				}

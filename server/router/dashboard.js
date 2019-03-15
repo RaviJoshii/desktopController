@@ -114,27 +114,16 @@ module.exports=function(app) {
 		else if (data=="rightkey"){
 			robot.keyTap("right");
 		}
-		/*
 		else if (data=="enter"){
+
 			robot.keyTap("enter");
 		}
-		*/
+		
 		
 		else if (data=="backspace"){
 			robot.keyTap("backspace");
 		}
-
-		else if(data=="enter")
-
-
-		{
-
-					robot.keyToggle('command','down');
-					robot.keyToggle('shift','down');
-					robot.keyToggle('g','down');gggggg
-					robot.keyToggle('shift','down');
-					robot.keyToggle('g','down');
-				}
+		
 		else{
 			console.log("invalid");
 		}

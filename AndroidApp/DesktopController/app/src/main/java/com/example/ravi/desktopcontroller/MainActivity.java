@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
-        loadfragment(new dashboard());
+        loadfragment(new addlink());
 
     }
     private boolean loadfragment(Fragment fragment){
