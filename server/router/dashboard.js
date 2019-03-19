@@ -9,7 +9,7 @@ module.exports=function(app) {
 
 	var status="1";
 	app.post('/checkconnection',function(req,res){
-		console.log("fesf");
+		console.log("mobile connected");
 			appdata={
 		 "error":status
 		}

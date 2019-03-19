@@ -19,6 +19,7 @@ module.exports=function(app) {
 		var str= data.split(" ");
 		var stringLength= str.length;
 		var firstword=str[0];
+		firstword= firstword.toLowerCase();
 		var secondword=str[1];
 		console.log(str);
 		if(firstword=="press")
