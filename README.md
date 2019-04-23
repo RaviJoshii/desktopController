@@ -1,6 +1,7 @@
 # desktopController
 AN APPLICATION USE TO CONTROL THE DESKTOP FUNCTIONS (EX. MOUSE, KEYBOARD AND OTHER PERIPHERALS) BY ANDROID APP THROUGH WIFI
 
+![Alt text](desktopController/ScreenShots/1.jpeg?raw=true)
 Run index.js file inside the "server" folder in your pc;
 
 
